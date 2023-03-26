@@ -5,7 +5,7 @@
 
 namespace menu
 {
-	LRESULT WINAPI c_window::wnd_proc( HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam )
+	auto c_window::wnd_proc( HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam ) -> LRESULT WINAPI
 	{
 		if ( ImGui_ImplWin32_WndProcHandler( hwnd, message, wparam, lparam ) )
 			return true;
@@ -33,7 +33,7 @@ namespace menu
 		return DefWindowProcA( hwnd, message, wparam, lparam );
 	}
 
-	bool c_window::create( const std::string w_name, const ImVec2 w_size, context_t &w_context, const std::function<void( context_t & )> w_styles )
+	auto c_window::create( const std::string w_name, const ImVec2 w_size, context_t &w_context, const std::function<void( context_t & )> w_styles ) -> bool
 	{
 		try
 		{
@@ -121,7 +121,7 @@ namespace menu
 		return false;
 	}
 
-	void c_window::render( context_t &w_context, const ImVec2 w_size, const std::function<void( context_t &, const ImVec2 )> menu )
+	auto c_window::render( context_t &w_context, const ImVec2 w_size, const std::function<void( context_t &, const ImVec2 )> menu ) -> void
 	{
 		MSG msg;
 		std::memset( &msg, 0, sizeof( msg ) );
@@ -175,7 +175,7 @@ namespace menu
 		UnregisterClassA( w_context.wc.lpszClassName, w_context.wc.hInstance );
 	}
 
-	void c_render::menu_style( context_t &w_context )
+	auto c_render::menu_style( context_t &w_context ) -> void
 	{
 		auto &io = ImGui::GetIO( );
 		auto &style = ImGui::GetStyle( );
@@ -213,7 +213,7 @@ namespace menu
 		style.ScrollbarSize = 2;
 	}
 
-	void c_render::menu_panel( context_t &w_context, const ImVec2 w_size )
+	auto c_render::menu_panel( context_t &w_context, const ImVec2 w_size ) -> void
 	{
 		ImGui::SetNextWindowPos( { 0, 0 }, ImGuiCond_::ImGuiCond_Always );
 		ImGui::SetNextWindowSize( w_size, ImGuiCond_::ImGuiCond_Always );
