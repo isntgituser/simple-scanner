@@ -7,9 +7,9 @@ namespace menu
 {
 	struct context_t
 	{
-		HWND					hwnd {};
-		LPDIRECT3D9				d3d {};
-		LPDIRECT3DDEVICE9		device {};
+		HWND                    hwnd {};
+		LPDIRECT3D9             d3d {};
+		LPDIRECT3DDEVICE9       device {};
 		D3DPRESENT_PARAMETERS	params {};
 
 		WNDCLASSEXA wc {};
@@ -20,7 +20,7 @@ namespace menu
 	{
 	private:
 		static LRESULT WINAPI wnd_proc( HWND, UINT, WPARAM, LPARAM );
-		void cleanup_device( context_t &w_context )
+		auto cleanup_device( context_t &w_context ) -> void
 		{
 			if ( w_context.d3d )
 			{
@@ -36,8 +36,8 @@ namespace menu
 		}
 
 	public:
-		bool create( const std::string, const ImVec2, context_t &, const std::function<void( context_t & )> );
-		void render( context_t &, const ImVec2, const std::function<void( context_t &, const ImVec2 )> );
+		auto create( const std::string, const ImVec2, context_t &, const std::function<void( context_t & )> ) -> bool;
+		auto render( context_t &, const ImVec2, const std::function<void( context_t &, const ImVec2 )> ) -> void
 
 		c_window( ) = default;
 		~c_window( ) = default;
@@ -49,8 +49,8 @@ namespace menu
 		inline static ImFont *open_sans, *open_sans_bd, *open_sans_sm;
 
 	public:
-		static void menu_style( context_t & );
-		static void menu_panel( context_t &, const ImVec2 );
+		static auto menu_style( context_t & ) -> void;
+		static auto menu_panel( context_t &, const ImVec2 ) ->;
 
 		c_render( ) = default;
 		~c_render( ) = default;
