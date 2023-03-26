@@ -19,7 +19,7 @@ namespace menu
 	class c_window
 	{
 	private:
-		static LRESULT WINAPI wnd_proc( HWND, UINT, WPARAM, LPARAM );
+		static auto wnd_proc( HWND, UINT, WPARAM, LPARAM ) -> LRESULT WINAPI;
 		auto cleanup_device( context_t &w_context ) -> void
 		{
 			if ( w_context.d3d )
